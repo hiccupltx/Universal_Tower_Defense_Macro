@@ -1,3 +1,4 @@
+#Requires AutoHotkey v2
 Sleep 5000
 
 class GithubClass {
@@ -8,14 +9,13 @@ class GithubClass {
     }
 
     GetLatestVersionURL(item) {
-        return this.link '/releases/latest/' item
+        return this.link '/releases/latest/download/' item
     }
 }
 
 macro_path := 'Salmon_UTD.exe'
 
-
-MsgBox 'Click ok to start updating / downloading'
+MsgBox('Click ok to start updating / downloading')
 
 try {
     g := GithubClass('hiccupltx', 'Universal_Tower_Defense_Macro')
@@ -23,8 +23,8 @@ try {
     try FileDelete(macro_path)
     Download(g.GetLatestVersionURL('Salmon_UTD.exe'), macro_path)
 } catch Error as e {
-    MsgBox e.Message
+    MsgBox(e.Message)
     ExitApp()
 }
 
-MsgBox 'Download / update complete'
+MsgBox('Download / update complete')
